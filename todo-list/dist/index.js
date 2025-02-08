@@ -36,9 +36,16 @@ const assignTodoToUser = (todoId, userId) => {
     todo.userId = userId;
     return `Todo con ID ${todoId} assegnato all'utente con ID ${userId}.`;
 };
+// Funzione per ottenere tutti i Todo di un utente
+const getUserTodos = (userId) => {
+    return todos.filter((todo) => todo.userId === userId);
+};
 // Test delle Funzioni
 const user1 = addUser("Mario Rossi", "mario23@example.com");
 const todo1 = addTodo("Compra il latte");
+const todo2 = addTodo("Fare la spesa");
 console.log(assignTodoToUser(todo1.id, user1.id)); // Assegna il todo all utente
+console.log(assignTodoToUser(todo2.id, user1.id));
 console.log("Lista aggiornata dei Todo:", todos);
 console.log("Lista degli utenti:", users);
+console.log(`Tutti i Todo di ${user1.name}:`, getUserTodos(user1.id));
