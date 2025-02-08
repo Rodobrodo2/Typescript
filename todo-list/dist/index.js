@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // string - number - boolean
 const myName = "Redi";
 const myAge = 25;
@@ -25,3 +26,5 @@ printArray(array, {
     age: 33,
     isAuth: true,
 });
+const todos = [];
+console.log("Lista Todo inizializzata", todos);

@@ -45,3 +45,17 @@ import { Todo } from "./types";
 
 const todos: Todo[] = [];
 console.log("Lista Todo inizializzata", todos);
+
+
+// Funzione per aggiungere i todo
+const addTodo = (title: string) => {
+    const newTodo = {
+        id: todos.length > 0 ? todos[todos.length - 1].id + 1 : 1, title, completed: false,
+    };
+    
+    todos.push(newTodo);
+    return newTodo;
+};
+
+console.log("Aggiunta Todo:", addTodo("Typescript magic"));
+console.log("Lista aggiornata:", todos);
