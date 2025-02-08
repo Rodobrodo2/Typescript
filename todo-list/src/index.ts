@@ -40,3 +40,8 @@ printArray(array, {
     age: 33,
     isAuth: true,
 });
+
+import { Todo } from "./types";
+
+const todos: Todo[] = [];
+console.log("Lista Todo inizializzata", todos);
