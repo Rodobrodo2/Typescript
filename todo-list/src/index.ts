@@ -1,4 +1,4 @@
-import { Todo, User } from "./types";
+import { Todo, User, TodoWithMetaData } from "./types";
 
 const todos: Todo[] = [];
 const users: User[] = [];
@@ -102,4 +102,20 @@ try {
 
 // Utilizzare il tipo any, aggiunto ad addTodo , qui facciamo il test di addTodo con metadata
 console.log(addTodo("Comprare le mele", {priority: "high", dueDate: "2024" }));
+console.log("Lista aggiornata dei Todo:", todos);
+
+// Funzione per aggiungere un todo con metadata
+const addTodoWithMetadata = (title: string, metadata: any): TodoWithMetaData => {
+    const newTodo: TodoWithMetaData  ={
+        id: todos.length > 0 ? todos [todos.length - 1].id + 1 : 1,
+        title,
+        completed: false,
+        metadata,
+    };
+
+    todos.push(newTodo);
+    return newTodo;
+};
+
+console.log(addTodoWithMetadata("Fare la spesa", { priority: "high,", dueDate: "2024"}));
 console.log("Lista aggiornata dei Todo:", todos);
