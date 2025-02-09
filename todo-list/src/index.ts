@@ -124,3 +124,24 @@ console.log("Lista aggiornata dei Todo:", todos);
 console.log(addTodo("Fare i compiti", "Priorità alta")); // metadata stringa
 console.log(addTodo("Pulire la casa", { priority: "high", dueDate: "2024-02-10" })); // Metadata come oggetto
 console.log("Lista aggiornata dei Todo:", todos);
+
+// Tipo utility partial
+const updatedTodo = (id: number, updates: Partial<Todo>): Todo | string => {
+    const todoIndex = todos.findIndex(todo => todo.id === id);
+
+    if (todoIndex === -1) {
+        return `Errore: Nessun todo trovatocon ID ${id}`;
+    }
+
+    todos[todoIndex] = { ...todos[todoIndex], ...updates };
+    return todos[todoIndex];
+}; // test
+
+const todo3 = addTodo("Comprare il deodorante", { priority: "high" });
+console.log("Todo aggiunto:", todo3);
+
+console.log("Aggiornamento titolo:", updatedTodo(todo3.id, { title: "Comprare il pane" }));
+console.log("Segnare come completato:", updatedTodo(todo3.id, { completed: true }));
+console.log("Aggiungere metadata extra:", updatedTodo(todo3.id, { metadata: { category: "spesa" } }));
+
+console.log("Lista aggiornata dei Todo:", todos);
