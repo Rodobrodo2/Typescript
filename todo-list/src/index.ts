@@ -9,12 +9,12 @@ console.log("Lista User inizializzata", users);
 
 
 // Funzione per aggiungere i todo
-const addTodo = (title: string, metadata?: any): Todo => {
+const addTodo = (title: string, metadata?: string | object): Todo => {
     const newTodo = {
         id: todos.length > 0 ? todos[todos.length - 1].id + 1 : 1,
         title, 
         completed: false,
-        metadata, // Se metadata e fornito lo assegna al nuovo Todo
+        metadata, // Metadata puo essere una stringa o unoggetto
     };
     
     todos.push(newTodo);
@@ -118,4 +118,9 @@ const addTodoWithMetadata = (title: string, metadata: any): TodoWithMetaData => 
 };
 
 console.log(addTodoWithMetadata("Fare la spesa", { priority: "high,", dueDate: "2024"}));
+console.log("Lista aggiornata dei Todo:", todos);
+
+// Test di vari tipi di metadata
+console.log(addTodo("Fare i compiti", "Priorità alta")); // metadata stringa
+console.log(addTodo("Pulire la casa", { priority: "high", dueDate: "2024-02-10" })); // Metadata come oggetto
 console.log("Lista aggiornata dei Todo:", todos);
