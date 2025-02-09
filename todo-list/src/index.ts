@@ -64,3 +64,14 @@ console.log(assignTodoToUser(todo2.id, user1.id));
 console.log("Lista aggiornata dei Todo:",todos);
 console.log("Lista degli utenti:", users);
 console.log(`Tutti i Todo di ${user1.name}:`, getUserTodos(user1.id));
+
+// Gestione degli errori con Never
+const error = (message: string): never => {
+    throw new Error(message);
+};
+
+try {
+    error("Errore grosso")
+} catch (e) {
+    console.error("Errore preso:", e);
+};
