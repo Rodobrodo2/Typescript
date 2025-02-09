@@ -75,3 +75,24 @@ try {
 } catch (e) {
     console.error("Errore preso:", e);
 };
+
+
+// Gestione dei Tipi Dinamici con Unknown
+const parseInput =(input: unknown): string => {
+    if (typeof input === "string") {
+        return input;
+    } else if (typeof input === "number") {
+        return input.toLocaleString();
+    } else {
+        error("Input non valido");
+        throw new Error("Questo codice non dovrebbe mai essere eseguito");
+    };
+};
+
+try {
+    console.log(parseInput("Ciao sono Redi"));
+    console.log(parseInput(22));
+    console.log(parseInput(true));
+} catch (e) {
+    console.error("Non e una stringa o un numero da trasformare in stringa", e);
+};
