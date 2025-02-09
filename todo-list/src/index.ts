@@ -9,9 +9,12 @@ console.log("Lista User inizializzata", users);
 
 
 // Funzione per aggiungere i todo
-const addTodo = (title: string) => {
+const addTodo = (title: string, metadata?: any): Todo => {
     const newTodo = {
-        id: todos.length > 0 ? todos[todos.length - 1].id + 1 : 1, title, completed: false,
+        id: todos.length > 0 ? todos[todos.length - 1].id + 1 : 1,
+        title, 
+        completed: false,
+        metadata, // Se metadata e fornito lo assegna al nuovo Todo
     };
     
     todos.push(newTodo);
@@ -96,3 +99,7 @@ try {
 } catch (e) {
     console.error("Non e una stringa o un numero da trasformare in stringa", e);
 };
+
+// Utilizzare il tipo any, aggiunto ad addTodo , qui facciamo il test di addTodo con metadata
+console.log(addTodo("Comprare le mele", {priority: "high", dueDate: "2024" }));
+console.log("Lista aggiornata dei Todo:", todos);
