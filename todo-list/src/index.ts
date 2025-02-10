@@ -12,11 +12,11 @@ console.log("Lista User inizializzata", users);
 const addTodo = (title: string, metadata?: string | object): Todo => {
     const newTodo = {
         id: todos.length > 0 ? todos[todos.length - 1].id + 1 : 1,
-        title, 
+        title,
         completed: false,
         metadata, // Metadata puo essere una stringa o unoggetto
     };
-    
+
     todos.push(newTodo);
     return newTodo;
 };
@@ -26,7 +26,7 @@ console.log("Lista aggiornata:", todos);
 
 // Associare Todo con Utenti
 // Funzione per aggiungere un user
-const addUser = ( name: string, email?: string): User => {
+const addUser = (name: string, email?: string): User => {
     const newUser: User = {
         id: users.length > 0 ? users[users.length - 1].id + 1 : 1, name, email,
     };
@@ -40,10 +40,10 @@ const assignTodoToUser = (todoId: number, userId: number): string => {
     const todo = todos.find((t) => t.id === todoId);
     const user = users.find((u) => u.id === userId);
 
-    if(!todo) {
+    if (!todo) {
         return `Errore: Il Todo con ID ${todoId} non esiste.`
     }
-    if(!user) {
+    if (!user) {
         return `Errore: L'utente con ID ${userId} non esiste.`
     }
 
@@ -64,7 +64,7 @@ const todo2 = addTodo("Fare la spesa");
 
 console.log(assignTodoToUser(todo1.id, user1.id)); // Assegna il todo all utente
 console.log(assignTodoToUser(todo2.id, user1.id));
-console.log("Lista aggiornata dei Todo:",todos);
+console.log("Lista aggiornata dei Todo:", todos);
 console.log("Lista degli utenti:", users);
 console.log(`Tutti i Todo di ${user1.name}:`, getUserTodos(user1.id));
 
@@ -81,7 +81,7 @@ try {
 
 
 // Gestione dei Tipi Dinamici con Unknown
-const parseInput =(input: unknown): string => {
+const parseInput = (input: unknown): string => {
     if (typeof input === "string") {
         return input;
     } else if (typeof input === "number") {
@@ -101,13 +101,13 @@ try {
 };
 
 // Utilizzare il tipo any, aggiunto ad addTodo , qui facciamo il test di addTodo con metadata
-console.log(addTodo("Comprare le mele", {priority: "high", dueDate: "2024" }));
+console.log(addTodo("Comprare le mele", { priority: "high", dueDate: "2024" }));
 console.log("Lista aggiornata dei Todo:", todos);
 
 // Funzione per aggiungere un todo con metadata
 const addTodoWithMetadata = (title: string, metadata: any): TodoWithMetaData => {
-    const newTodo: TodoWithMetaData  ={
-        id: todos.length > 0 ? todos [todos.length - 1].id + 1 : 1,
+    const newTodo: TodoWithMetaData = {
+        id: todos.length > 0 ? todos[todos.length - 1].id + 1 : 1,
         title,
         completed: false,
         metadata,
@@ -117,7 +117,7 @@ const addTodoWithMetadata = (title: string, metadata: any): TodoWithMetaData => 
     return newTodo;
 };
 
-console.log(addTodoWithMetadata("Fare la spesa", { priority: "high,", dueDate: "2024"}));
+console.log(addTodoWithMetadata("Fare la spesa", { priority: "high,", dueDate: "2024" }));
 console.log("Lista aggiornata dei Todo:", todos);
 
 // Test di vari tipi di metadata
@@ -152,10 +152,18 @@ const user2: User = {
     name: "Mario Rossi",
     email: "mario@example.com",
     todos: [
-      { id: 1, title: "Comprare il latte", completed: false, userId: 1 },
-      { id: 2, title: "Leggere un libro", completed: true, userId: 1 },
+        { id: 1, title: "Comprare il latte", completed: false, userId: 1 },
+        { id: 2, title: "Leggere un libro", completed: true, userId: 1 },
     ],
-  };
+};
 
-  console.log("Utente con todos:", user1); 
-  // Se provassimo a cambiare qualcosa in user2(nei todo che sono solo readonly) ci sarebbe un errore.
+console.log("Utente con todos:", user1);
+// Se provassimo a cambiare qualcosa in user2(nei todo che sono solo readonly) ci sarebbe un errore.
+
+// Utilizzare tupla, Funzione per ottenere il riepilogo di un Todo
+const getTodoSummary = (todo: Todo): [string, boolean] => {
+    return [todo.title, todo.completed];
+}; // Test
+
+console.log("Summary Todo 1:", getTodoSummary(todo1)); // Output: ["Comprare il latte", false]
+console.log("Summary Todo 2:", getTodoSummary(todo2)); // Output: ["Leggere un libro", false]
