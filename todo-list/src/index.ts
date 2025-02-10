@@ -156,3 +156,6 @@ const user2: User = {
       { id: 2, title: "Leggere un libro", completed: true, userId: 1 },
     ],
   };
+
+  console.log("Utente con todos:", user1); 
+  // Se provassimo a cambiare qualcosa in user2(nei todo che sono solo readonly) ci sarebbe un errore.
