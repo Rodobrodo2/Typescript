@@ -26,7 +26,7 @@ console.log("Lista aggiornata:", todos);
 
 // Associare Todo con Utenti
 // Funzione per aggiungere un user
-const addUser = (name: string, email?: string): User => {
+const addUser = ( name: string, email?: string): User => {
     const newUser: User = {
         id: users.length > 0 ? users[users.length - 1].id + 1 : 1, name, email,
     };
@@ -145,3 +145,14 @@ console.log("Segnare come completato:", updatedTodo(todo3.id, { completed: true 
 console.log("Aggiungere metadata extra:", updatedTodo(todo3.id, { metadata: { category: "spesa" } }));
 
 console.log("Lista aggiornata dei Todo:", todos);
+
+// Utilizzare Array Readonly (aggiunto all'interfaccia user)
+const user2: User = {
+    id: 1,
+    name: "Mario Rossi",
+    email: "mario@example.com",
+    todos: [
+      { id: 1, title: "Comprare il latte", completed: false, userId: 1 },
+      { id: 2, title: "Leggere un libro", completed: true, userId: 1 },
+    ],
+  };

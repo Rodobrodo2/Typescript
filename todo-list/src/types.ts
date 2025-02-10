@@ -10,6 +10,7 @@ export interface User {
     id: number,
     name: string,
     email?: string,
+    readonly todos?: ReadonlyArray<Todo>;
 };
 
 export interface TodoWithMetaData extends Todo {
