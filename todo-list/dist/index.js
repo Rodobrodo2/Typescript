@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const todos = [];
 const users = [];
+const projects = [];
 console.log("Lista Todo inizializzata", todos);
 console.log("Lista User inizializzata", users);
 // Funzione per aggiungere i todo
@@ -133,3 +134,27 @@ const user2 = {
 };
 console.log("Utente con todos:", user1);
 // Se provassimo a cambiare qualcosa in user2(nei todo che sono solo readonly) ci sarebbe un errore.
+// Utilizzare tupla, Funzione per ottenere il riepilogo di un Todo
+const getTodoSummary = (todo) => {
+    return [todo.title, todo.completed];
+}; // Test
+console.log("Summary Todo 1:", getTodoSummary(todo1)); // Output: ["Comprare il latte", false]
+console.log("Summary Todo 2:", getTodoSummary(todo2)); // Output: ["Leggere un libro", false]
+// Funzione per creare un nuovo progetto
+const createProject = (name, users, todos) => {
+    const newProject = {
+        id: projects.length > 0 ? projects[projects.length - 1].id + 1 : 1,
+        name,
+        users,
+        todos,
+    };
+    projects.push(newProject);
+    return newProject;
+}; // Test funzione
+const user6 = { id: 6, name: "Mario Rossi", email: "mario@example.com", todos: [] };
+const user7 = { id: 7, name: "Luca Bianchi", email: "luca@example.com", todos: [] };
+const todo6 = { id: 6, title: "Comprare la pasta", completed: false, userId: 6 };
+const todo7 = { id: 7, title: "Leggere un libro", completed: false, userId: 7 };
+const project1 = createProject("Progetto Sviluppo", [user6, user7], [todo6, todo7]);
+console.log("Nuovo progetto creato:", project1);
+console.log("Lista progetti:", projects);

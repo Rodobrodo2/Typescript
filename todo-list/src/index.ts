@@ -1,7 +1,8 @@
-import { Todo, User, TodoWithMetaData } from "./types";
+import { Todo, User, TodoWithMetaData, Project } from "./types";
 
 const todos: Todo[] = [];
 const users: User[] = [];
+const projects: Project[] = [];
 
 console.log("Lista Todo inizializzata", todos);
 console.log("Lista User inizializzata", users);
@@ -167,3 +168,28 @@ const getTodoSummary = (todo: Todo): [string, boolean] => {
 
 console.log("Summary Todo 1:", getTodoSummary(todo1)); // Output: ["Comprare il latte", false]
 console.log("Summary Todo 2:", getTodoSummary(todo2)); // Output: ["Leggere un libro", false]
+
+// Funzione per creare un nuovo progetto
+const createProject = (name: string, users: User[], todos: Todo[]): Project => {
+    const newProject: Project = {
+        id: projects.length > 0 ? projects[projects.length - 1].id + 1 : 1,
+        name,
+        users,
+        todos,
+    };
+
+    projects.push(newProject);
+    return newProject;
+}; // Test funzione
+
+const user6: User = { id: 6, name: "Mario Rossi", email: "mario@example.com", todos: [] };
+const user7: User = { id: 7, name: "Luca Bianchi", email: "luca@example.com", todos: [] };
+
+const todo6: Todo = { id: 6, title: "Comprare la pasta", completed: false, userId: 6 };
+const todo7: Todo = { id: 7, title: "Leggere un libro", completed: false, userId: 7 };
+
+const project1 = createProject("Progetto Sviluppo", [user6, user7], [todo6, todo7]);
+
+console.log("Nuovo progetto creato:", project1);
+console.log("Lista progetti:", projects);
+
