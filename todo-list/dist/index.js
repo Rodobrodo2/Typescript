@@ -121,3 +121,15 @@ console.log("Aggiornamento titolo:", updatedTodo(todo3.id, { title: "Comprare il
 console.log("Segnare come completato:", updatedTodo(todo3.id, { completed: true }));
 console.log("Aggiungere metadata extra:", updatedTodo(todo3.id, { metadata: { category: "spesa" } }));
 console.log("Lista aggiornata dei Todo:", todos);
+// Utilizzare Array Readonly (aggiunto all'interfaccia user)
+const user2 = {
+    id: 1,
+    name: "Mario Rossi",
+    email: "mario@example.com",
+    todos: [
+        { id: 1, title: "Comprare il latte", completed: false, userId: 1 },
+        { id: 2, title: "Leggere un libro", completed: true, userId: 1 },
+    ],
+};
+console.log("Utente con todos:", user1);
+// Se provassimo a cambiare qualcosa in user2(nei todo che sono solo readonly) ci sarebbe un errore.
