@@ -1,4 +1,4 @@
-import { Todo, User, TodoWithMetaData, Project } from "./types";
+import { Todo, User, TodoWithMetaData, Project, TodoStatus } from "./types";
 
 const todos: Todo[] = [];
 const users: User[] = [];
@@ -16,6 +16,7 @@ const addTodo = (title: string, metadata?: string | object): Todo => {
         title,
         completed: false,
         metadata, // Metadata puo essere una stringa o unoggetto
+        status: TodoStatus.Pending,
     };
 
     todos.push(newTodo);
@@ -112,6 +113,7 @@ const addTodoWithMetadata = (title: string, metadata: any): TodoWithMetaData => 
         title,
         completed: false,
         metadata,
+        status: TodoStatus.Pending,
     };
 
     todos.push(newTodo);
