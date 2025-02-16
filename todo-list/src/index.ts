@@ -1,5 +1,7 @@
 import { Todo, User, TodoWithMetaData, Project, TodoStatus } from "./types";
 import { UserModel } from "./UserModel";
+import { filterTodos, updatePartialTodo, TodoRecord, convertArrayToRecord } from "./utils";
+
 
 const todos: Todo[] = [];
 const users: User[] = [];
@@ -232,3 +234,46 @@ users.push(user8, user9);
 console.log("Lista aggiornata degli utenti:", users);
 console.log("Todos assegnati a ${user8.name}:", user8.todos);
 console.log("Todos assegnati a ${user9.name}:", user9.todos);
+
+// Filtrare i todo non completati 
+const pendingTodos = filterTodos(todos, todo => !todo.completed);
+console.log("Todo non completati:", pendingTodos);
+
+// Funzione updatedPartialTodo
+// Esempio 1: Aggiornare lo stato di un Todo
+const result1 = updatePartialTodo(1, { status: TodoStatus.Completed }, todos);
+console.log(result1);
+
+// Esempio 2: Aggiornare il titolo e lo stato di completamento
+const result2 = updatePartialTodo(2, { title: "Leggere un nuovo libro", completed: true }, todos);
+console.log(result2);
+
+// Esempio 3: Aggiornare un Todo che non esiste
+const result3 = updatePartialTodo(99, { status: TodoStatus.Completed }, todos);
+console.log(result3);
+
+console.log("Lista Todo dopo l'aggiornamento:", todos);
+
+// Esempio di un TodoRecord
+const todoRecord: TodoRecord = {
+    1: { id: 1, title: "Comprare il latte", completed: false, status: TodoStatus.Pending },
+    2: { id: 2, title: "Leggere un libro", completed: false, status: TodoStatus.InProgress }
+};
+
+console.log(todoRecord[1]); // Ora possiamo accedere velocemente ai Todo tramite il loro Id
+
+// Esempio con convertArrayToRecord
+const todos1: Todo[] = [
+    { id: 1, title: "Comprare il latte", completed: false, status: TodoStatus.Pending },
+    { id: 2, title: "Leggere un libro", completed: false, status: TodoStatus.InProgress },
+    { id: 3, title: "Fare esercizio", completed: false, status: TodoStatus.Completed }
+]
+
+console.log("Lista Todo1:", todos);
+
+// Convertiamo l array in todorecord
+const todoRecord1 = convertArrayToRecord(todos1);
+console.log("TodoRecord1:", todoRecord1);
+
+// Ora possiamo accedere velocemente ai Todo tramite Id
+console.log("Dettagli del Todo con ID 2:", todoRecord1[2]);
