@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const types_1 = require("./types");
 const todos = [];
 const users = [];
 const projects = [];
@@ -12,6 +13,7 @@ const addTodo = (title, metadata) => {
         title,
         completed: false,
         metadata, // Metadata puo essere una stringa o unoggetto
+        status: types_1.TodoStatus.Pending,
     };
     todos.push(newTodo);
     return newTodo;
@@ -97,6 +99,7 @@ const addTodoWithMetadata = (title, metadata) => {
         title,
         completed: false,
         metadata,
+        status: types_1.TodoStatus.Pending,
     };
     todos.push(newTodo);
     return newTodo;
@@ -158,3 +161,15 @@ const todo7 = { id: 7, title: "Leggere un libro", completed: false, userId: 7 };
 const project1 = createProject("Progetto Sviluppo", [user6, user7], [todo6, todo7]);
 console.log("Nuovo progetto creato:", project1);
 console.log("Lista progetti:", projects);
+// Funzione per aggiornare lo stato dei todo
+const updateTodoStatus = (todoId, status) => {
+    const todo = todos.find(t => t.id === todoId);
+    if (!todo) {
+        return `Errore: Nessun Todo trovato con ID ${todoId}`;
+    }
+    todo.status = status;
+    return `Stato del Todo con ID ${todoId} aggiornato a ${status}`;
+}; // Test
+console.log(updateTodoStatus(1, types_1.TodoStatus.InProgress));
+console.log(updateTodoStatus(2, types_1.TodoStatus.Completed));
+console.log("Lista aggioranta dei Todo:", todos);

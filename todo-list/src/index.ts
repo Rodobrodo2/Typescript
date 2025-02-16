@@ -195,3 +195,18 @@ const project1 = createProject("Progetto Sviluppo", [user6, user7], [todo6, todo
 console.log("Nuovo progetto creato:", project1);
 console.log("Lista progetti:", projects);
 
+// Funzione per aggiornare lo stato dei todo
+const updateTodoStatus = (todoId: number, status: TodoStatus): string => {
+    const todo = todos.find(t => t.id === todoId);
+
+    if (!todo) {
+        return `Errore: Nessun Todo trovato con ID ${todoId}`;
+    }
+    
+    todo.status = status;
+    return `Stato del Todo con ID ${todoId} aggiornato a ${status}`;
+}; // Test
+
+console.log(updateTodoStatus(1, TodoStatus.InProgress));
+console.log(updateTodoStatus(2, TodoStatus.Completed));
+console.log("Lista aggioranta dei Todo:", todos);
