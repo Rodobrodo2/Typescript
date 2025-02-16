@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const types_1 = require("./types");
+const UserModel_1 = require("./UserModel");
 const todos = [];
 const users = [];
 const projects = [];
@@ -173,3 +174,19 @@ const updateTodoStatus = (todoId, status) => {
 console.log(updateTodoStatus(1, types_1.TodoStatus.InProgress));
 console.log(updateTodoStatus(2, types_1.TodoStatus.Completed));
 console.log("Lista aggioranta dei Todo:", todos);
+// Utiliziamo UserModel
+// Creazione di istanze della classe UserModle
+const user8 = new UserModel_1.UserModel(8, "Alice Rossi", "alice.rossi@example.com");
+const user9 = new UserModel_1.UserModel(9, "Pedro Grassi", "pedro.grassi@example.com");
+//Creazione di todo
+const todo8 = { id: 8, title: "Vai a scuola", completed: false, status: types_1.TodoStatus.Pending };
+const todo9 = { id: 9, title: "Leggere un giornale", completed: false, status: types_1.TodoStatus.Pending };
+// Assegnazione dei Todo agli utenti usando addTodo
+user8.addTodo(todo8);
+user9.addTodo(todo9);
+// Aggiunta utenti alla lista globale
+users.push(user8, user9);
+// Output
+console.log("Lista aggiornata degli utenti:", users);
+console.log("Todos assegnati a ${user8.name}:", user8.todos);
+console.log("Todos assegnati a ${user9.name}:", user9.todos);
